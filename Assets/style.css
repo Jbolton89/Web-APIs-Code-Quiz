@@ -7,12 +7,12 @@
     --neutral: #858995; 
     --green: #2B835E; 
     --red: #922944; 
+
 }
 .container {
     display:flex;
     justify-content: center;
     align-items: center;
-    width: 700px;
     max-width:100%; 
     height: 60vw;
     background-color: var(--neutral);
@@ -42,11 +42,16 @@
 }
 
 .start-btn, .next-btn {
+    flex-grow: 2;
     font-size: 1.5rem;
     font-weight: bold;
 }
-#question-container { 
+.next-btn {
+    align-self: flex-end;
+}
+#question{ 
     color: ivory;
+    font-weight: bold;
 }
 .navbar {
     display:flex;
