@@ -74,6 +74,15 @@
    width:100%; 
    background:rgb(187, 56, 56); 
 }
+.timer-text {
+    padding:10px;
+    font-size:1.5rem; 
+
+}
+.highscores {
+    padding:10px;
+    font-size:1.5rem; 
+}
 .hide {
     display:none;
 }

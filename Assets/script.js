@@ -1,5 +1,4 @@
-var win = document.querySelector(".win")
-var lose = document.querySelector(".lose")
+
 var timerEl = document.querySelector(".timer-count")
 var startButton = document.querySelector(".start-btn")
 var nextButton = document.querySelector(".next-btn")
@@ -11,6 +10,9 @@ var randomQuestion, currentQuestionIndex
 
 startButton.addEventListener("click", function() { 
     countDown(); 
+nextButton.addEventListener('click', ()=> {
+        currentQuestionIndex++
+        nextQuestion()
 })
 startButton.addEventListener("click", function(){
     startQuiz();
@@ -22,7 +24,6 @@ startButton.addEventListener("click", function(){
     nextQuestion();
 })
 function startQuiz() {
-
 }
 
 function nextQuestion() {
@@ -57,13 +58,16 @@ function selectAnswer(e) {
     Array.from(answerButtonsEl.children).forEach(function (button) {
             setStatusClass(button, button.dataset.correct)
         })
+        if (randomQuestion.length > currentQuestionIndex + 1) {
+            nextButton.classList.remove('hide')
+        }else {
+            startButton.innerText = 'Restart'
+            startButton.classList.remove('hide')
+        }
+        }
     nextButton.classList.remove('hide')
-}
+})
 // I am quite sure it is to do with the above
-
-
-
-
 
 function setStatusClass(element, correct) { 
     clearStatusClass(element)
@@ -88,10 +92,28 @@ var questions = [
             { text: 'Strings', correct: false }, 
             { text: 'Numbers', correct: false}
         ], 
+    },
+    {
+        question: 'What is the largest part of the brain?',
+        answers: [
+            { text: 'Amygdala', correct: false },
+            { text: 'Cerebellum', correct: false }, 
+            { text: 'Cerebrum', correct: true }, 
+            { text: 'Front part', correct: false}
+        ], 
+    },
+    {
+        question: 'Which of these is a programming language?',
+        answers: [
+            { text: 'Bite', correct: true },
+            { text: 'Gnaw', correct: false }, 
+            { text: 'Itch', correct: false }, 
+            { text: 'Scratch', correct: true}
+        ], 
     }
 
 ]
-// For countdown timer - Now fully functional
+// For countdown timer - Now fully functional except the penalties which I am waiting to fix the above
 function countDown() {
     var timeLeft = 60;
     var timeInterval = setInterval(function () {
