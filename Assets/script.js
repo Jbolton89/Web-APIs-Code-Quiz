@@ -1,4 +1,3 @@
-
 var timerEl = document.querySelector(".timer-count")
 var startButton = document.querySelector(".start-btn")
 var nextButton = document.querySelector(".next-btn")
@@ -8,14 +7,12 @@ var answerButtonsEl = document.getElementById('answer-buttons')
 
 var randomQuestion, currentQuestionIndex
 
-startButton.addEventListener("click", function() { 
-    countDown(); 
 nextButton.addEventListener('click', ()=> {
         currentQuestionIndex++
         nextQuestion()
 })
 startButton.addEventListener("click", function(){
-    startQuiz();
+    countDown();
     console.log('started');
     startButton.classList.add('hide');
     randomQuestion = questions.sort(() => Math.random() - .5);
@@ -23,8 +20,7 @@ startButton.addEventListener("click", function(){
     questionContainerEl.classList.remove('hide');
     nextQuestion();
 })
-function startQuiz() {
-}
+
 
 function nextQuestion() {
     resetFunction()
@@ -34,7 +30,7 @@ function showQuestion(question) {
     questionEl.innerText = question.question;
     question.answers.forEach(function (answer) {
             var button = document.createElement('button')
-            button.innertext = answer.text
+            button.textContent = answer.text
             button.classList.add('btn')
             if (answer.correct) {
                 button.dataset.correct = answer.correct
@@ -46,27 +42,26 @@ function showQuestion(question) {
 function resetFunction() { 
     nextButton.classList.add('hide')
     while (answerButtonsEl.firstChild) {
-        answerButtonsEl.removeChild
-        (answerButtonsEl.firstChild)
+        answerButtonsEl.removeChild(answerButtonsEl.firstChild)
         }
     }
 function selectAnswer(e) {
     var selectedButton = e.target
     var correct = selectedButton.dataset.correct
-    setStatusClass(document.getElementsByClassName('btn'))
-    .classList.add(correct)
+    // setStatusClass(document.getElementsByClassName('btn'))
+    // .classList.add(correct)
     Array.from(answerButtonsEl.children).forEach(function (button) {
             setStatusClass(button, button.dataset.correct)
         })
         if (randomQuestion.length > currentQuestionIndex + 1) {
             nextButton.classList.remove('hide')
-        }else {
+        } else {
             startButton.innerText = 'Restart'
             startButton.classList.remove('hide')
+            startButton.disabled = false;
         }
-        }
-    nextButton.classList.remove('hide')
-})
+    }
+    
 // I am quite sure it is to do with the above
 
 function setStatusClass(element, correct) { 
@@ -74,7 +69,7 @@ function setStatusClass(element, correct) {
     if (correct) { 
         element.classList.add('correct') 
     } else { 
-        element.class.add('wrong')
+        element.classList.add('wrong')
     }
 }
 
@@ -105,7 +100,7 @@ var questions = [
     {
         question: 'Which of these is a programming language?',
         answers: [
-            { text: 'Bite', correct: true },
+            { text: 'Bite', correct: false },
             { text: 'Gnaw', correct: false }, 
             { text: 'Itch', correct: false }, 
             { text: 'Scratch', correct: true}
