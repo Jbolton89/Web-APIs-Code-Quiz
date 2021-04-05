@@ -72,7 +72,7 @@ function setStatusClass(element, correct) {
         element.classList.add('correct')
     } else {
         element.classList.add('wrong');
-        timeLeft-=5; 
+        timeLeft-=1.25 ; 
     }
 }
 
